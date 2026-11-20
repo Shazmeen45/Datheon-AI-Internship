@@ -22,3 +22,6 @@ venv/
 
 # ChromaDB generated database
 **/chroma_db/
+
+# Personal testing documents
+task_02_rag_assistant/data/testing.pdf

@@ -9,16 +9,16 @@ from text_splitter import split_text
 from vector_store import create_vector_store
 
 
-def build_rag_pipeline():
+def build_rag_pipeline(document_name="sample.txt"):
 
     data_path = (
         Path(__file__).resolve().parents[1]
         / "data"
-        / "sample.txt"
+        / document_name
     )
 
     # 1. Load document
-    print("Loading document...")
+    print("\nLoading document...")
     documents = load_document(data_path)
 
     # 2. Split document
@@ -57,7 +57,7 @@ INSTRUCTIONS:
 - Answer only the exact question asked.
 - Use the retrieved context to answer.
 - Focus on the main concept in the question.
-- Explain the relationship between the concepts when asked.
+- Explain relationships between concepts when asked.
 - Use 2 to 4 simple sentences.
 - Do not include unrelated definitions.
 - Do not invent information.
@@ -79,9 +79,10 @@ def ask_question(vector_store, llm, prompt, question):
     print("\nSearching documents...")
 
     documents = vector_store.similarity_search(
-    question,
-    k=2
+        question,
+        k=5
     )
+
     if not documents:
         print("No relevant information found.")
         return
@@ -107,7 +108,7 @@ def ask_question(vector_store, llm, prompt, question):
 
     response = llm.invoke(messages)
 
-    # 5. Display question and answer
+    # 5. Display answer
     print("\n========== QUESTION ==========")
     print(question)
 
@@ -142,11 +143,12 @@ def ask_question(vector_store, llm, prompt, question):
 
 if __name__ == "__main__":
 
-    vector_store, llm, prompt = build_rag_pipeline()
-
-    user_question = (
-    "What is Deep Learning and how does it relate to Machine Learning?"
+    vector_store, llm, prompt = build_rag_pipeline(
+        "sample.txt"
     )
+
+    user_question = input("\nEnter your question: ")
+
     ask_question(
         vector_store,
         llm,
