@@ -19,3 +19,6 @@ venv/
 # Generated files
 *.log
 .DS_Store
+
+# ChromaDB generated database
+**/chroma_db/

@@ -1,0 +1,27 @@
+Artificial Intelligence (AI)
+
+Artificial Intelligence is a branch of computer science that focuses on creating machines and software capable of performing tasks that normally require human intelligence.
+
+Machine Learning
+
+Machine Learning is a subset of Artificial Intelligence. It allows computers to learn patterns from data and make predictions without being explicitly programmed for every task.
+
+Deep Learning
+
+Deep Learning is a subset of Machine Learning that uses neural networks with multiple layers to learn complex patterns from large amounts of data.
+
+Natural Language Processing
+
+Natural Language Processing (NLP) is a field of AI that enables computers to understand, interpret, and generate human language.
+
+Generative AI
+
+Generative AI is a type of artificial intelligence that can generate new content, including text, images, audio, and code.
+
+Retrieval-Augmented Generation
+
+Retrieval-Augmented Generation (RAG) is an AI technique that combines information retrieval with generative AI. It retrieves relevant information from external documents and uses that information to generate more accurate and context-based answers.
+
+Vector Embeddings
+
+Vector embeddings are numerical representations of text or other data. They help computers understand semantic similarity between different pieces of information.
