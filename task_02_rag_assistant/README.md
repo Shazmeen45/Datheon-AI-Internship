@@ -4,20 +4,24 @@
 
 This project is a Document Question-Answering Assistant built using Retrieval-Augmented Generation (RAG).
 
-It allows users to retrieve relevant information from documents and generate answers based on the provided content.
+It allows users to upload and select TXT or PDF documents, retrieve relevant information, and generate context-based answers using a locally running Large Language Model (LLM).
 
-The system uses local AI models and vector embeddings to provide context-based answers without requiring a paid LLM API.
+The application uses LangChain, Sentence Transformers, ChromaDB, and Ollama to provide document-based question answering without requiring a paid LLM API.
 
 ## Features
 
-- Load documents in TXT and PDF formats.
-- Extract text and preserve document source metadata.
-- Split documents into smaller chunks using Recursive Character Text Splitter.
-- Generate vector embeddings using Sentence Transformers.
-- Store document embeddings in ChromaDB.
-- Retrieve relevant information using semantic similarity search.
-- Generate answers using a locally running Llama 3.2 1B model through Ollama.
-- Display source filenames and PDF page references with answers.
+- Supports TXT and PDF document formats.
+- Automatically detects available documents in the data folder.
+- Allows users to select a document before asking questions.
+- Extracts text while preserving source metadata.
+- Splits documents into smaller chunks using Recursive Character Text Splitter.
+- Generates vector embeddings using Sentence Transformers.
+- Stores embeddings and document metadata in ChromaDB.
+- Retrieves relevant information through semantic similarity search.
+- Generates answers using the local Llama 3.2 1B model through Ollama.
+- Displays source filenames and PDF page references with answers.
+- Supports multiple questions in a single session.
+- Uses a local LLM instead of a paid LLM API.
 
 ## Technologies Used
 
@@ -26,9 +30,9 @@ The system uses local AI models and vector embeddings to provide context-based a
 - Ollama
 - Llama 3.2 1B
 - Sentence Transformers
+- Hugging Face
 - ChromaDB
 - PyPDF
-- Hugging Face
 
 ## Project Structure
 
@@ -48,17 +52,17 @@ task_02_rag_assistant/
 └── README.md
 ```
 
-Note: The ChromaDB database is generated locally when the application runs and is excluded from GitHub.
+**Note:** Users can add their own TXT or PDF documents inside the `data/` folder. The ChromaDB database is generated locally when the application runs and is excluded from GitHub.
 
 ## How It Works
 
-1. **Document Loading:** Reads text and PDF documents.
-2. **Text Splitting:** Divides documents into smaller chunks while preserving metadata.
+1. **Document Loading:** Reads TXT and PDF documents using Python and PyPDF.
+2. **Text Splitting:** Divides extracted text into smaller chunks using Recursive Character Text Splitter.
 3. **Embedding Generation:** Converts text chunks into numerical vector representations using `sentence-transformers/all-MiniLM-L6-v2`.
-4. **Vector Storage:** Stores embeddings and document metadata in ChromaDB.
-5. **Information Retrieval:** Finds relevant document chunks using similarity search.
-6. **Answer Generation:** Uses the retrieved context to generate answers with the local Llama 3.2 1B model.
-7. **Source Attribution:** Displays the source filename and page number when available.
+4. **Vector Storage:** Stores document embeddings and metadata in ChromaDB.
+5. **Information Retrieval:** Retrieves relevant document chunks using semantic similarity search.
+6. **Answer Generation:** Uses retrieved context to generate answers with the locally running Llama 3.2 1B model.
+7. **Source Attribution:** Displays the source filename and PDF page number when available.
 
 ## Installation and Setup
 
@@ -66,21 +70,16 @@ Note: The ChromaDB database is generated locally when the application runs and i
 
 ```bash
 git clone https://github.com/Shazmeen45/Datheon-AI-Internship.git
-```
-
-### 2. Navigate to the Project Directory
-
-```bash
 cd Datheon-AI-Internship
 ```
 
-### 3. Create and Activate Virtual Environment
+### 2. Create a Virtual Environment
 
-```bash
+```powershell
 py -3.13 -m venv .venv
 ```
 
-Windows PowerShell:
+### 3. Activate the Virtual Environment
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
@@ -92,56 +91,58 @@ Windows PowerShell:
 python -m pip install -r requirements.txt
 ```
 
-### 5. Install and Run Ollama
+### 5. Install Ollama
 
-Download Ollama from:
+Download and install Ollama:
 
 https://ollama.com/download
 
-Pull the required model:
+Download the required model:
 
 ```bash
 ollama pull llama3.2:1b
 ```
 
-Make sure Ollama is running before executing the application.
-
-## Run the Project
+### 6. Run the Application
 
 From the repository root directory, execute:
 
 ```bash
-python task_02_rag_assistant/src/rag_pipeline.py
+python task_02_rag_assistant/src/main.py
 ```
 
-The application will load the sample document, create embeddings, store them in ChromaDB, retrieve relevant information, and generate an AI answer.
+## How to Use
+
+1. Place your TXT or PDF document inside `task_02_rag_assistant/data/`.
+2. Run the application using the command above.
+3. Select a document from the available documents list.
+4. Enter a question related to the selected document.
+5. The system retrieves relevant information and generates an answer.
+6. Review the answer and its source references.
+7. Type `exit` to close the assistant.
 
 ## Example Question
 
-**Question:**
+**Question:** What is Deep Learning?
 
-What is Deep Learning and how does it relate to Machine Learning?
+**Expected Answer:** Deep Learning is a subset of Machine Learning that uses neural networks with multiple layers to learn complex patterns from large amounts of data.
 
-**Expected Answer:**
-
-Deep Learning is a subset of Machine Learning that uses neural networks with multiple layers to learn complex patterns from large amounts of data.
-
-**Source:**
-
-sample.txt
+**Source:** sample.txt
 
 ## Learning Outcomes
 
 Through this project, I gained practical experience with:
 
-- Retrieval-Augmented Generation (RAG).
-- Document loading and text preprocessing.
-- Text chunking and metadata preservation.
-- Semantic search and vector embeddings.
-- ChromaDB vector database.
-- LangChain integration.
-- Running local LLMs using Ollama.
-- Building a document-based question-answering pipeline.
+- Retrieval-Augmented Generation (RAG)
+- Document loading and text extraction
+- Text preprocessing and chunking
+- Vector embeddings
+- Semantic similarity search
+- ChromaDB vector storage
+- LangChain integration
+- Local LLM deployment using Ollama
+- Document-based question answering
+- Source metadata and page references
 
 ## Author
 
@@ -149,6 +150,5 @@ Through this project, I gained practical experience with:
 
 GitHub: https://github.com/Shazmeen45
 
----
-
-**Internship:**
+**Internship:** Python + Generative AI & LangChain Internship  
+**Organization:** Datheon
