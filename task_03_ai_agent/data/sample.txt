@@ -1,0 +1,20 @@
+
+Artificial Intelligence
+
+Artificial Intelligence (AI) is a branch of computer science that focuses on creating intelligent machines capable of performing tasks that normally require human intelligence.
+
+Machine Learning
+
+Machine Learning (ML) is a subset of AI that enables computers to learn patterns from data and make predictions without being explicitly programmed for every task.
+
+Deep Learning
+
+Deep Learning is a subset of Machine Learning that uses neural networks with multiple layers to learn complex patterns.
+
+Python
+
+Python is a high-level programming language widely used in artificial intelligence, machine learning, data science, and automation.
+
+Generative AI
+
+Generative AI is a type of artificial intelligence that can generate new content, including text, images, audio, and code.
